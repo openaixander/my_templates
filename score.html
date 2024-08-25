@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Score - pastq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .score-container {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="score-container">
+        <h2>Quiz Complete!</h2>
+        <p>Your score:</p>
+        <div class="score">
+            <span id="userScore">0</span> / <span id="totalQuestions">0</span>
+        </div>
+        <p class="mt-3">Great job! Keep practicing to improve your skills.</p>
+        <a href="#" class="btn btn-primary mt-3">Back to Quizzes</a>
+    </div>
+
+    <script>
+        // This would typically be populated by server-side logic
+        document.getElementById('userScore').textContent = '7';
+        document.getElementById('totalQuestions').textContent = '10';
+    </script>
+</body>
+</html>
