@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Questions - pastq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 80px 0;
+        }
+        .quiz-form {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #6c5ce7;
+        }
+        .form-select, .form-control {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        .form-select:focus, .form-control:focus {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 0.25rem rgba(108, 92, 231, 0.25);
+            border-color: #6c5ce7;
+        }
+        .btn-custom {
+            background: linear-gradient(45deg, #6c5ce7 0%, #a29bfe 100%);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .btn-custom:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-delete {
+            background: linear-gradient(45deg, #ff6b6b 0%, #ff8e8e 100%);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .btn-delete:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+        .question-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            color: #6c5ce7;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .delete-question {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        @media (max-width: 768px) {
+            .quiz-form {
+                padding: 20px;
+            }
+            .btn-custom, .btn-delete {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .question-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="" alt="pastq logo"> pastq
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <form id="quiz-form" class="quiz-form">
+                <h2 class="text-center mb-4" style="color: #6c5ce7;">Add Questions</h2>
+                
+                <div id="questions-container">
+                    <!-- Question template -->
+                    <div class="question-card">
+                        <h3>Question 1</h3>
+                        <button type="button" class="btn btn-delete delete-question" style="display: none;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <div class="mb-3">
+                            <label for="question-1" class="form-label">Question Text</label>
+                            <textarea class="form-control" id="question-1" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="option-a-1" class="form-label">Option A</label>
+                            <input type="text" class="form-control" id="option-a-1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="option-b-1" class="form-label">Option B</label>
+                            <input type="text" class="form-control" id="option-b-1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="option-c-1" class="form-label">Option C</label>
+                            <input type="text" class="form-control" id="option-c-1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="option-d-1" class="form-label">Option D</label>
+                            <input type="text" class="form-control" id="option-d-1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="correct-answer-1" class="form-label">Correct Answer</label>
+                            <select class="form-select" id="correct-answer-1" required>
+                                <option value="" selected disabled>Select Correct Answer</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="marks-1" class="form-label">Marks</label>
+                            <input type="number" class="form-control" id="marks-1" min="1" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <button type="button" id="add-question" class="btn btn-custom">
+                        <i class="fas fa-plus me-2"></i>Add Another Question
+                    </button>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-custom">
+                        <i class="fas fa-paper-plane me-2"></i>Submit Quiz
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 pastq. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white me-3">Terms of Service</a>
+                    <a href="#" class="text-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let questionCount = 1;
+
+        function addDeleteButtonFunctionality(questionCard) {
+            const deleteButton = questionCard.querySelector('.delete-question');
+            deleteButton.addEventListener('click', function() {
+                questionCard.remove();
+                updateQuestionNumbers();
+            });
+        }
+
+        function updateQuestionNumbers() {
+            const questionCards = document.querySelectorAll('.question-card');
+            questionCards.forEach((card, index) => {
+                card.querySelector('h3').textContent = `Question ${index + 1}`;
+                const inputs = card.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    const newId = input.id.replace(/\d+$/, index + 1);
+                    input.id = newId;
+                    const label = card.querySelector(`label[for="${input.id}"]`);
+                    if (label) {
+                        label.setAttribute('for', newId);
+                    }
+                });
+            });
+        }
+
+        document.getElementById('add-question').addEventListener('click', function() {
+            questionCount++;
+            const newQuestion = document.querySelector('.question-card').cloneNode(true);
+            newQuestion.querySelector('h3').textContent = `Question ${questionCount}`;
+            
+            // Update IDs and labels
+            const inputs = newQuestion.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                const newId = input.id.replace('-1', `-${questionCount}`);
+                input.id = newId;
+                input.value = '';
+                const label = newQuestion.querySelector(`label[for="${input.id}"]`);
+                if (label) {
+                    label.setAttribute('for', newId);
+                }
+            });
+
+            // Show delete button for new questions
+            const deleteButton = newQuestion.querySelector('.delete-question');
+            deleteButton.style.display = 'block';
+            addDeleteButtonFunctionality(newQuestion);
+
+            document.getElementById('questions-container').appendChild(newQuestion);
+        });
+
+        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically collect all the question data and send it to your server
+            console.log('Quiz submitted');
+            // Add your submission logic here
+        });
+
+        // Show delete button for all questions except the first one
+        const questionCards = document.querySelectorAll('.question-card');
+        questionCards.forEach((card, index) => {
+            if (index > 0) {
+                const deleteButton = card.querySelector('.delete-question');
+                deleteButton.style.display = 'block';
+            }
+            addDeleteButtonFunctionality(card);
+        });
+    </script>
+</body>
+</html>
